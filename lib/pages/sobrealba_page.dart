@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -137,7 +135,10 @@ class _PlaceSobreAlbaWidgetState extends State<PlaceSobreAlbaWidget> {
                           child: Text(textParagrafo_6,
                             style: TextStyle(fontSize: 12.0, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, color: Colors.blue),
                           ),
-                          onTap: () => _launchURL("http://www.al.ba.gov.br/historia-do-legislativo"),
+                          onTap: () {
+                            Uri urlNew = Uri.parse("http://www.al.ba.gov.br/historia-do-legislativo");
+                            _launchURL(urlNew);
+                          },
                         ),
                       ),
                     ],
@@ -152,12 +153,12 @@ class _PlaceSobreAlbaWidgetState extends State<PlaceSobreAlbaWidget> {
     );
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 }

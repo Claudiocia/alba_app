@@ -1,7 +1,5 @@
 import 'package:alba_app/pages/comissoes_page.dart';
 import 'package:alba_app/pages/result_comiss_page.dart';
-import 'package:alba_app/pages/result_tel_page.dart';
-import 'package:alba_app/pages/tel_page.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -80,8 +78,8 @@ class _PlacePesqComissoesWidgetState extends State<PlacePesqComissoesWidget> {
                 height: 44.0,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF004a92),
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF004a92),
                     elevation: 30.0,
                   ),
                   child: Text(

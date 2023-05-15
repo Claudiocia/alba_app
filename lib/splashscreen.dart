@@ -1,7 +1,6 @@
 import 'package:alba_app/main.dart';
 import 'package:alba_app/utils/livros_api_bd.dart';
 import 'package:alba_app/utils/news_api.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -13,14 +12,13 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final Connectivity _connectivity = Connectivity();
+  //final Connectivity _connectivity = Connectivity();
   NewsApi news = NewsApi();
   LivrosApiBd livros = LivrosApiBd();
   var hoje = DateTime.now();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     //Estou parando a busca de noticias e livros na inicialização
     //Quando refizer a API reativar
@@ -40,12 +38,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       debugShowCheckedModeBanner: false,
     );
   }
-
+  /*
   _conectivityStatus(ConnectivityResult connectivityResult) async {
     if(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi){
       await news.loadNews().then((value) {});
       await livros.atualizarBdLivr().then((value){});
-
     }else{
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Verifique sua conexão de rede!!",
@@ -57,7 +54,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           )
       );
     }
-  }
+  } */
 }
 
 class SplashScreenWidget extends StatelessWidget {

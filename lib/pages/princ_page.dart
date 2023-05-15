@@ -1,9 +1,7 @@
 import 'package:alba_app/helpers/usuario_helper.dart';
 import 'package:alba_app/pages/dep_page.dart';
-import 'package:alba_app/pages/home_page.dart';
 import 'package:alba_app/pages/mais_page.dart';
 import 'package:alba_app/pages/tel_page.dart';
-import 'package:alba_app/utils/news_api.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:rate_my_app/rate_my_app.dart';
@@ -128,7 +126,8 @@ class _PrincPageState extends State<PrincPage> {
   _routesNavigations(BuildContext context, int id) {
     switch (id) {
       case 0:
-        _launchURL("https://www.al.ba.gov.br/midia-center/noticias");
+        Uri urlNew = Uri.parse("https://www.al.ba.gov.br/midia-center/noticias");
+        _launchURL(urlNew);
         break;
       case 1:
         Navigator.push(context,
@@ -145,12 +144,12 @@ class _PrincPageState extends State<PrincPage> {
     }
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Endereço não acessível $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 }

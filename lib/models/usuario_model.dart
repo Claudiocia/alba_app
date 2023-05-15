@@ -85,8 +85,8 @@ class UsuarioModel extends Model {
       listUser = list;
     });
 
-    /*
-    if(listUser.length > 0){
+
+    if(listUser.isNotEmpty){
       user = UsuarioModel.fromMap(listUser.first);
       notifyListeners();
       return user;
@@ -95,7 +95,7 @@ class UsuarioModel extends Model {
       isLoading = false;
       notifyListeners();
       return null;
-    } */
+    }
   }
 
   UsuarioModel userLogado(){

@@ -1,8 +1,6 @@
 import 'package:alba_app/helpers/usuario_helper.dart';
 import 'package:alba_app/pages/deputados_page.dart';
 import 'package:alba_app/pages/maisalba_page.dart';
-import 'package:alba_app/pages/noticias_page.dart';
-import 'package:alba_app/pages/pesq_news_page.dart';
 import 'package:alba_app/pages/pesq_telefones_page.dart';
 import 'package:alba_app/pages/pesq_tododep_page.dart';
 import 'package:alba_app/pages/princ_page.dart';
@@ -15,6 +13,7 @@ import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
 import '../splashscreen.dart';
+
 
 class DepPage extends StatefulWidget {
   DepPage();
@@ -146,7 +145,7 @@ class _DepPageState extends State<DepPage> {
               tooltip: "Recarregar",
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => DepPage()));
+                    builder: (context) => SplashScreenPage()));
               },
             ),
             IconButton(
@@ -180,7 +179,7 @@ class _DepPageState extends State<DepPage> {
               tooltip: "Recarregar",
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => TelPage()));
+                    builder: (context) => SplashScreenPage()));
               },
             ),
           ],

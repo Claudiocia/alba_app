@@ -40,27 +40,21 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> initPlatformState() async{
     if(!mounted) return;
-
     OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-
     await OneSignal.shared.setAppId("ba78084d-3d69-46fa-a555-e7ae014c6549");
-
     OneSignal.shared.promptUserForPushNotificationPermission().then((accepted){
-      print("Permissão aceita: $accepted");
+      //print("Permissão aceita: $accepted");
     });
 
     OneSignal.shared
         .setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
-      print('FOREGROUND HANDLER CALLED WITH: ${event}');
-      /// Display Notification, send null to not display
+      //print('FOREGROUND HANDLER CALLED WITH: ${event}');
       event.complete(null);
-
       this.setState(() {
         _debugLabelString =
         "Notification received in foreground notification: \n${event.notification.jsonRepresentation().replaceAll("\\n", "\n")}";
       });
     });
-
     OneSignal.shared
         .setInAppMessageClickedHandler((OSInAppMessageAction action) {
       this.setState(() {
@@ -68,20 +62,15 @@ class _MyAppState extends State<MyApp> {
         "In App Message Clicked: \n${action.jsonRepresentation().replaceAll("\\n", "\n")}";
       });
     });
-
     bool requiresConsent = await OneSignal.shared.requiresUserPrivacyConsent();
-
     this.setState(() {
       _enableConsentButton = requiresConsent;
     });
-
     OneSignal.shared.disablePush(false);
-
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initPlatformState();
     query2 = _queryUser();
@@ -90,7 +79,6 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   void setState(fn) {
-    // TODO: implement setState
     super.setState(fn);
     userLogado.userLogado();
   }
@@ -151,5 +139,4 @@ class _MyAppState extends State<MyApp> {
         )
     );
   }
-
 }

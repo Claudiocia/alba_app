@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:alba_app/pages/maisalba_page.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';

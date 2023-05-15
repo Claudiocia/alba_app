@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:alba_app/models/noticia_model.dart';
 import 'package:alba_app/pages/pesq_news_page.dart';
 import 'package:alba_app/splashscreen.dart';
@@ -9,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class PlacePesqNoticiaWidget extends StatefulWidget {
   int editoria;
   DateTime inicio;
@@ -148,7 +147,8 @@ class PlacePesqNoticiaWidgetState extends State<PlacePesqNoticiaWidget> {
                       actions: <Widget>[
                         TextButton(
                           onPressed: (){
-                            _launchURL(listNotis[index].linkNoticia);
+                            Uri urlNew = Uri.parse(listNotis[index].linkNoticia);
+                            _launchURL(urlNew);
 
                             Navigator.of(context).pop(true);
                           },
@@ -207,13 +207,12 @@ class PlacePesqNoticiaWidgetState extends State<PlacePesqNoticiaWidget> {
     }
   }
 
-  _launchURL(String urlNew) async {
-
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 

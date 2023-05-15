@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:alba_app/helpers/noticia_helper.dart';
 import 'package:alba_app/models/noticia_model.dart';
 import 'package:flutter/material.dart';
@@ -74,8 +72,8 @@ class PlaceNoticiaWidgetState extends State<PlaceNoticiaWidget> {
                     actions: <Widget>[
                       TextButton(
                         onPressed: (){
-                          _launchURL(listNotis[index].linkNoticia);
-
+                          Uri urlNew = Uri.parse(listNotis[index].linkNoticia);
+                          _launchURL(urlNew);
                           Navigator.of(context).pop(true);
                         },
                         child: Text("Ler a íntegra da noticia!", style: TextStyle(fontFamily: 'Dosis'),),
@@ -100,13 +98,12 @@ class PlaceNoticiaWidgetState extends State<PlaceNoticiaWidget> {
         });
   }
 
-  _launchURL(String urlNew) async {
-
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 

@@ -20,8 +20,8 @@ class _PlaceTodosDepWidgetState extends State<PlaceTodosDepWidget> {
   List<TodoDepModel> listTodoDep = [];
   UtilidadeGeral utils = UtilidadeGeral();
   String pesq;
-  String pathDep = "http://www.al.ba.gov.br/deputados/deputado-estadual/";
-  String pathExDep = "http://www.al.ba.gov.br/deputados/ex-deputado-estadual/";
+  String pathDep = "https://www.al.ba.gov.br/deputados/deputado-estadual/";
+  String pathExDep = "https://www.al.ba.gov.br/deputados/ex-deputado-estadual/";
 
   @override
   void initState() {
@@ -193,10 +193,12 @@ class _PlaceTodosDepWidgetState extends State<PlaceTodosDepWidget> {
                           TextButton(
                               onPressed: (){
                                 if(listTodoDep[index].inMandat == 's'){
-                                  _launchURL(pathDep + listTodoDep[index].linkPagin);
+                                  Uri urlNew = Uri.parse(pathDep + listTodoDep[index].linkPagin);
+                                  _launchURL(urlNew);
                                   Navigator.of(context).pop(true);
                                 }else{
-                                  _launchURL(pathExDep + listTodoDep[index].linkPagin);
+                                  Uri urlNew = Uri.parse(pathExDep + listTodoDep[index].linkPagin);
+                                  _launchURL(urlNew);
                                   Navigator.of(context).pop(true);
                                 }
                               },
@@ -215,12 +217,12 @@ class _PlaceTodosDepWidgetState extends State<PlaceTodosDepWidget> {
     }
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 

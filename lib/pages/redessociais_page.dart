@@ -52,27 +52,30 @@ class _PlaceRedesSociaisWidgetState extends State<PlaceRedesSociaisWidget> {
   _routesNavigations(BuildContext context, int id) {
     switch (id) {
       case 0:
-        _launchURL("https://www.facebook.com/legislativodabahia");
+        Uri urlNew = Uri.parse("https://www.facebook.com/legislativodabahia");
+        _launchURL(urlNew);
         break;
       case 1:
-        _launchURL(
-            "https://www.instagram.com/legislativoalba/?igshid=154rgjpxiz9er");
+        Uri urlNew = Uri.parse("https://www.instagram.com/legislativoalba/?igshid=154rgjpxiz9er");
+        _launchURL(urlNew);
         break;
       case 2:
-        _launchURL("https://twitter.com/LegislativoAlba");
+        Uri urlNew = Uri.parse("https://twitter.com/LegislativoAlba");
+        _launchURL(urlNew);
         break;
       case 3:
-        _launchURL("https://www.flickr.com/photos/presidenciaalba/");
+        Uri urlNew = Uri.parse("https://www.flickr.com/photos/presidenciaalba/");
+        _launchURL(urlNew);
         break;
     }
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 }

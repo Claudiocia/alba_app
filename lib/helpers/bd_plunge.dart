@@ -98,31 +98,29 @@ final String inMandatCol = "inMandat";
 final String tagCol = "tag";
 
 class BdPlunge {
-  //Aplicação do padrão Singleton na Classe (Para que exista apenas um Banco
 
+  //Aplicação do padrão Singleton na Classe (Para que exista apenas um Banco
   static final BdPlunge instance = BdPlunge.internal();
   int _version;
-
   factory BdPlunge() => instance;
-
   BdPlunge.internal();
-
   Database dbAlb;
 
+  // ignore: missing_return
   Future<Database> get dbAlba async {
     if (dbAlb != null) {
       _version = await dbAlb.getVersion();
-      print("Verificou a versão do banco é: $_version");
-      if(_version < 15){
-        dbAlb = await updateDb(dbAlb, _version, 16);
-        print("disparou update");
+      //print("Verificou a versão do banco é: $_version");
+      if(_version < 19){
+        dbAlb = await updateDb(dbAlb, _version, 19);
+        //print("disparou update");
         return dbAlb;
       }else{
-        print("não rodou update");
+        //print("não rodou update");
         return dbAlb;
       }
     } else if(dbAlb == null){
-      print("O banco não existe cria");
+      //print("O banco não existe cria");
       return dbAlb = await initDb();
     }
   }
@@ -130,10 +128,8 @@ class BdPlunge {
   Future<Database> initDb() async {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, "albanoti_tst.db");
-
     List<String> listQueries = formQueries();
-
-    return await openDatabase(path, version: 16,
+    return await openDatabase(path, version: 19,
         onCreate: (Database db, int newerVersion) async {
           for (String query in listQueries) {
             await db.execute(query);
@@ -519,8 +515,8 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Agricultura e Política Rural', 'Permanente', '3115-7215/3115-2913', 'cap@alba.ba.gov.br', "
           "'Sala Jadiel Matos', 'Terça-feira', '09h', 'Manuel Rocha', 'Ricardo Rodrigues', "
-          "'Eduardo Salles/Fátima Nunes/Marquinho Viana/Pedro Tavares/Tiago Correia', "
-          "'Jordavio Ramos/Laerte do Vando/Luciano Araujo/Paulo Rangel', "
+          "'Fátima Nunes/Luciano Araujo/Marquinho Viana/Pedro Tavares/Tiago Correia', "
+          "'Eduardo Salles/Jordavio Ramos/Laerte do Vando/Paulo Rangel', "
           "'Bruna de Souza Santana', 'Agricultura e Politica Rural Permanente Terca-feira Terca Manuel Rocha Ricardo Rodrigues "
           " Eduardo Salles Fatima Nunes Marquinho Viana Pedro Tavares Tiago Correia "
           " Jordavio Ramos Laerte do Vando Luciano Araujo Paulo Rangel Jadiel Matos cap');",
@@ -559,11 +555,11 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Finanças, Orçamento, Fiscalização e Controle', 'Permanente', "
           "'3115-7289', 'cfof@alba.ba.gov.br', 'Sala Jairo Azi', 'Terça-feira', '11h15', 'Vitor Bonfim', 'Tiago Correia', "
-          "'Angelo Coronel Filho/Bobô/Euclides Fernandes/Paulo Rangel/Robinho/Zé Raimundo Fontes', "
-          "'Nelson Leal/Penalva/Roberto Carlos/Samuel Júnior', 'Iara Maria Loureiro de Oliveira', "
+          "'Angelo Coronel Filho/Bobô/Hassan/Paulo Rangel/Robinho/Zé Raimundo Fontes', "
+          "'Euclides Fernandes/Penalva/Roberto Carlos/Samuel Júnior', 'Iara Maria Loureiro de Oliveira', "
           "'Financas Orcamento Fiscalizacao e Controle Permanente Terca-feira Terca Vitor Bonfim Tiago Correia "
           " Angelo Coronel Filho Bobo Euclides Fernandes Paulo Rangel Robinho Ze Raimundo Fontes "
-          " Nelson Leal Penalva Roberto Carlos Samuel Junior Jairo Azi cfof');",
+          " Hassan Penalva Roberto Carlos Samuel Junior Jairo Azi cfof');",
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
@@ -2135,8 +2131,8 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Agricultura e Política Rural', 'Permanente', '3115-7215/3115-2913', 'cap@alba.ba.gov.br', "
           "'Sala Jadiel Matos', 'Terça-feira', '09h', 'Manuel Rocha', 'Ricardo Rodrigues', "
-          "'Eduardo Salles/Fátima Nunes/Marquinho Viana/Pedro Tavares/Tiago Correia', "
-          "'Jordavio Ramos/Laerte do Vando/Luciano Araujo/Paulo Rangel', "
+          "'Fátima Nunes/Luciano Araujo/Marquinho Viana/Pedro Tavares/Tiago Correia', "
+          "'Eduardo Salles/Jordavio Ramos/Laerte do Vando/Paulo Rangel', "
           "'Bruna de Souza Santana', 'Agricultura e Politica Rural Permanente Terca-feira Terca Manuel Rocha Ricardo Rodrigues "
           " Eduardo Salles Fatima Nunes Marquinho Viana Pedro Tavares Tiago Correia "
           " Jordavio Ramos Laerte do Vando Luciano Araujo Paulo Rangel Jadiel Matos cap');",
@@ -2175,11 +2171,11 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Finanças, Orçamento, Fiscalização e Controle', 'Permanente', "
           "'3115-7289', 'cfof@alba.ba.gov.br', 'Sala Jairo Azi', 'Terça-feira', '11h15', 'Vitor Bonfim', 'Tiago Correia', "
-          "'Angelo Coronel Filho/Bobô/Euclides Fernandes/Paulo Rangel/Robinho/Zé Raimundo Fontes', "
-          "'Nelson Leal/Penalva/Roberto Carlos/Samuel Júnior', 'Iara Maria Loureiro de Oliveira', "
+          "'Angelo Coronel Filho/Bobô/Hassan/Paulo Rangel/Robinho/Zé Raimundo Fontes', "
+          "'Euclides Fernandes/Penalva/Roberto Carlos/Samuel Júnior', 'Iara Maria Loureiro de Oliveira', "
           "'Financas Orcamento Fiscalizacao e Controle Permanente Terca-feira Terca Vitor Bonfim Tiago Correia "
           " Angelo Coronel Filho Bobo Euclides Fernandes Paulo Rangel Robinho Ze Raimundo Fontes "
-          " Nelson Leal Penalva Roberto Carlos Samuel Junior Jairo Azi cfof');",
+          " Hassan Penalva Roberto Carlos Samuel Junior Jairo Azi cfof');",
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("

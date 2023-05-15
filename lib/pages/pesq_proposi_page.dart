@@ -244,8 +244,8 @@ class _PlacePesqProposiWidgetState extends State<PlacePesqProposiWidget> {
                   height: 44.0,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF004a92),
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color(0xFF004a92),
                       elevation: 30.0,
                     ),
                     child: Text(
@@ -410,8 +410,8 @@ class _PlacePesqProposiWidgetState extends State<PlacePesqProposiWidget> {
                   height: 44.0,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF004a92),
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color(0xFF004a92),
                       elevation: 30.0,
                     ),
                     child: Text(
@@ -573,8 +573,8 @@ class _PlacePesqProposiWidgetState extends State<PlacePesqProposiWidget> {
                   height: 44.0,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF004a92),
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color(0xFF004a92),
                       elevation: 30.0,
                     ),
                     child: Text(

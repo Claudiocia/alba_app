@@ -1,4 +1,3 @@
-import 'package:alba_app/helpers/noticia_helper.dart';
 import 'package:alba_app/models/noticia_model.dart';
 import 'package:intl/intl.dart';
 import 'package:web_scraper/web_scraper.dart';

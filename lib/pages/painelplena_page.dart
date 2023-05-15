@@ -1,26 +1,11 @@
-import 'package:alba_app/helpers/mesadir_helper.dart';
-import 'package:alba_app/models/mesadir_model.dart';
-import 'package:alba_app/pages/deputados_page.dart';
-import 'package:alba_app/pages/home_page.dart';
-import 'package:alba_app/pages/pesq_news_page.dart';
-import 'package:alba_app/pages/pesq_telefones_page.dart';
-import 'package:alba_app/pages/pesq_tododep_page.dart';
 import 'package:alba_app/pages/princ_page.dart';
-import 'package:alba_app/pages/tel_page.dart';
-import 'package:alba_app/pages/telefones_page.dart';
-import 'package:alba_app/pages/todosdep_page.dart';
 import 'package:alba_app/pages/tvalba_page.dart';
 import 'package:alba_app/presentation/custom_icons_icons.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../splashscreen.dart';
-import 'dep_page.dart';
-import 'maisalba_page.dart';
-import 'noticias_page.dart';
 
 class PlacePainelPlenaWidget extends StatefulWidget {
   const PlacePainelPlenaWidget({Key key, this.cookieManager}) : super(key: key);

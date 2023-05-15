@@ -1,6 +1,5 @@
 import 'package:alba_app/helpers/usuario_helper.dart';
 import 'package:alba_app/pages/deputados_page.dart';
-import 'package:alba_app/pages/pesq_news_page.dart';
 import 'package:alba_app/pages/pesq_telefones_page.dart';
 import 'package:alba_app/pages/pesq_tododep_page.dart';
 import 'package:alba_app/pages/princ_page.dart';
@@ -12,10 +11,8 @@ import 'package:alba_app/utils/news_api.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
-import '../splashscreen.dart';
 import 'dep_page.dart';
 import 'maisalba_page.dart';
-import 'noticias_page.dart';
 
 class MaisPage extends StatefulWidget {
   MaisPage();

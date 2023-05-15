@@ -20,12 +20,13 @@ class LivrosApiBd {
 
     if(await webScraperLiv.loadWebPage("/midia-center/alba-cultural")){
 
-      List<Map<String, dynamic>> numberOfPag =
-      webScraperLiv.getElement('ul.pagination > li > a.paginate-button-next.fe-mobile-hide', ['href']);
 
-      var numPag = numberOfPag[0]['attributes'];
+      //List<Map<String, dynamic>> numberOfPag =
+      // webScraperLiv.getElement('ul.pagination > li > a.paginate-button-next.fe-mobile-hide', ['href']);
+
+      //var numPag = numberOfPag[0]['attributes'];
       //print("numero de página que vem no scraper ${numberOfPag[0]['attributes']}");
-      String pagina = (numPag.toString()).trim();
+      //String pagina = (numPag.toString()).trim();
       //print("A informação trabalhada = a ${pagina}");
       max = 5; //int.parse(pagina.substring(40, (pagina.length - 9)));
       //print("valor denominado como max é ${max}");

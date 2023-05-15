@@ -84,8 +84,8 @@ class _PlaceCadastroWidgetState extends State<PlaceCadastroWidget> {
                       height: 44.0,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF004a92),
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white,
+                          backgroundColor: Color(0xFF004a92),
                           elevation: 30.0,
                         ),
                         child: Text(
@@ -127,8 +127,7 @@ class _PlaceCadastroWidgetState extends State<PlaceCadastroWidget> {
   }
 
   void onSucess() {
-    Widget _materialBuilder(BuildContext context, Widget child) {
-      ScaffoldMessenger.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registro salvo com sucesso!!",
             style: TextStyle(color: Colors.white,
                 fontWeight: FontWeight.bold),
@@ -140,7 +139,6 @@ class _PlaceCadastroWidgetState extends State<PlaceCadastroWidget> {
       Navigator.of(context).pop();
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => PrincPage()));
-    }
   }
 
   void onFail(){
@@ -156,6 +154,5 @@ class _PlaceCadastroWidgetState extends State<PlaceCadastroWidget> {
     Navigator.of(context).pop();
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => PrincPage()));
-
   }
 }

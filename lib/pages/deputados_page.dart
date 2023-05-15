@@ -64,18 +64,19 @@ class _PlaceDeputadoWidgetState extends State<PlaceDeputadoWidget> {
               ),
             ),
             onTap: () {
-              _launchURL(pathDep + listDeps[index].linkDep);
+              Uri urlNew = Uri.parse(pathDep + listDeps[index].linkDep);
+              _launchURL(urlNew);
             },
           );
         });
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 }

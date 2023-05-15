@@ -2,7 +2,6 @@ import 'package:alba_app/models/livro_model.dart';
 import 'package:alba_app/utils/dialog_inset_defeat.dart';
 import 'package:alba_app/utils/livros_api_bd.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 

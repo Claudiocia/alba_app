@@ -1,13 +1,7 @@
-import 'package:alba_app/models/autor_model.dart';
 import 'package:alba_app/models/editoria_model.dart';
-import 'package:alba_app/models/filtro_model.dart';
-import 'package:alba_app/models/tipo_model.dart';
 import 'package:alba_app/pages/noticias_pesq_page.dart';
-import 'package:alba_app/pages/pauta_page.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multiple_localization/multiple_localization.dart';
 
 import '../splashscreen.dart';
 
@@ -103,8 +97,8 @@ class _PlacePesqNewsWidgetState extends State<PlacePesqNewsWidget> {
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF004a92),
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF004a92),
                     elevation: 30.0,
                   ),
                   child: Text(
@@ -133,8 +127,8 @@ class _PlacePesqNewsWidgetState extends State<PlacePesqNewsWidget> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF004a92),
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF004a92),
                   elevation: 30.0,
                 ),
                 child: Text(
@@ -212,8 +206,8 @@ class _PlacePesqNewsWidgetState extends State<PlacePesqNewsWidget> {
                 height: 44.0,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF004a92),
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF004a92),
                     elevation: 30.0,
                   ),
                   child: Text(

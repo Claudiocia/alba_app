@@ -83,8 +83,8 @@ class _PlaceRadioAlbaWidgetState extends State<PlaceRadioAlbaWidget> with Ticker
               buildButtons(),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF004a92),
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF004a92),
                   elevation: 30.0,
                   minimumSize: Size(100.0, 45.0),
                 ),

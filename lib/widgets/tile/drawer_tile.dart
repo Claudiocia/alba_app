@@ -1,5 +1,4 @@
 import 'package:alba_app/pages/dep_page.dart';
-import 'package:alba_app/pages/home_page.dart';
 import 'package:alba_app/pages/mais_page.dart';
 import 'package:alba_app/pages/painelplena_page.dart';
 import 'package:alba_app/pages/redessociais_page.dart';
@@ -53,19 +52,20 @@ class DrawerTile extends StatelessWidget {
     );
   }
 
-  _launchURL(String urlNew) async {
-    var url = urlNew;
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchURL(Uri urlNew) async {
+    //print("a url é: "+ urlNew);
+    if (await canLaunchUrl(urlNew)) {
+      await launchUrl(urlNew, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Endereço não acessível $url';
+      throw 'Não consegue acessar o endereço $urlNew';
     }
   }
 
   _routesNavigations(BuildContext context, int id) {
     switch (id) {
       case 0:
-        _launchURL("https://www.al.ba.gov.br/midia-center/noticias");
+        Uri urlNew = Uri.parse("https://www.al.ba.gov.br/midia-center/noticias");
+        _launchURL(urlNew);
         /*
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => HomePage())); */

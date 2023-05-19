@@ -62,6 +62,7 @@ class _PlaceMaisAlbaWidgetState extends State<PlaceMaisAlbaWidget> {
         break;
       case 1:
         Uri urlNew = Uri.parse("https://www.al.ba.gov.br/comissoes/resumo-pauta");
+        print(urlNew);
         _launchURL(urlNew);
         break;
       case 2:

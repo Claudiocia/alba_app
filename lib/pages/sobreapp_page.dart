@@ -2,6 +2,7 @@ import 'package:alba_app/helpers/mesadir_helper.dart';
 import 'package:alba_app/models/mesadir_model.dart';
 import 'package:alba_app/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:show_update_dialog/show_update_dialog.dart';
 
 class PlaceSobreAppWidget extends StatefulWidget {
   PlaceSobreAppWidget();
@@ -13,7 +14,7 @@ class _PlaceSobreAppWidgetState extends State<PlaceSobreAppWidget> {
   MesaDirHelper helperMesa = MesaDirHelper();
   List<MesaDirModel> listMesa = [];
   bool isLoading = false;
-  final versionAtual = "Versão 4.0";
+  String versionAtual = '';
 
   final textParagrafo_1 = "Este aplicativo foi desenvolvido com o objetivo de ampliar a "
       "transparência e facilitar o acesso da população às informações disponibilizadas "
@@ -28,11 +29,31 @@ class _PlaceSobreAppWidgetState extends State<PlaceSobreAppWidget> {
       "atividades desenvolvidas pelos parlamentares, que buscam sempre o bem comum "
       "dos baianos.";
 
+  verifyVersion() async {
+    final versionCheck = ShowUpdateDialog(
+        iOSId: 'br.com.nortemkt.albaApp',
+        androidId: 'br.com.nortemkt.alba_app',
+        iOSAppStoreCountry: 'BR'
+    );
+    VersionModel vs = await versionCheck.fetchVersionInfo();
+
+    versionAtual = vs.localVersion;
+    print("A versão é: $versionAtual");
+    print("O link do APP para a Loja é: "+vs.appStoreLink);
+    print("A versão atual da loja é: "+vs.storeVersion);
+    print("O que temos de novidade: "+vs.releaseNotes);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     isLoading = true;
+    verifyVersion().then((ver){
+      setState((){
+        ver = versionAtual;
+      });
+    });
     helperMesa.getAllMesa().then((list){
       setState(() {
         listMesa = list;

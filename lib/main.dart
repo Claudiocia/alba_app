@@ -5,6 +5,8 @@ import 'package:alba_app/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:alba_app/helpers/bd_plunge.dart';
 
 import 'helpers/usuario_helper.dart';
 
@@ -84,11 +86,12 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+    final Future<Database> database = BdPlunge.instance.dbAlba;
     var value2;
     return Container(
         child: FutureBuilder(
-            future: query2,
-            builder: (BuildContext context, AsyncSnapshot<UsuarioModel> snapshot){
+            future: database,
+            builder: (BuildContext context, AsyncSnapshot<Database> snapshot){
               final state = snapshot.connectionState;
               if(state == ConnectionState.done) {
                 value2 = "Carregando";

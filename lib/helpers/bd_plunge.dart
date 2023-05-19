@@ -110,17 +110,17 @@ class BdPlunge {
   Future<Database> get dbAlba async {
     if (dbAlb != null) {
       _version = await dbAlb.getVersion();
-      //print("Verificou a versão do banco é: $_version");
-      if(_version < 19){
-        dbAlb = await updateDb(dbAlb, _version, 19);
-        //print("disparou update");
+      print("Verificou a versão do banco é: $_version");
+      if(_version < 22){
+        dbAlb = await updateDb(dbAlb, _version, 22);
+        print("disparou update");
         return dbAlb;
       }else{
-        //print("não rodou update");
+        print("não rodou update");
         return dbAlb;
       }
     } else if(dbAlb == null){
-      //print("O banco não existe cria");
+      print("O banco não existe cria");
       return dbAlb = await initDb();
     }
   }
@@ -129,7 +129,7 @@ class BdPlunge {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, "albanoti_tst.db");
     List<String> listQueries = formQueries();
-    return await openDatabase(path, version: 19,
+    return await openDatabase(path, version: 21,
         onCreate: (Database db, int newerVersion) async {
           for (String query in listQueries) {
             await db.execute(query);
@@ -495,8 +495,8 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Constituição e Justiça', 'Permanente', '3115-7260', 'ccj@alba.ba.gov.br', "
           "'Sala Luís Cabral', 'Terça-feira', '10h15', 'Maria del Carmen', 'Junior Nascimento', "
-          "'Alan Sanches/Euclides Fernandes/Ivana Bastos/Jurailton Santos/Matheus Ferreira/Vitor Bonfim', "
-          "'Felipe Duarte/Paulo Rangel/Robinson Almeida/Tiago Correia', 'Valeria Simões / Raiana Pacheco', "
+          "'Alan Sanches/Euclides Fernandes/Felipe Duarte/Ivana Bastos/Matheus Ferreira/Vitor Bonfim', "
+          "'Jurailton Santos/Paulo Rangel/Robinson Almeida/Tiago Correia', 'Valeria Simões / Raiana Pacheco', "
           "'Constituicao e Justica Permanente Terca-feira Terca Maria del Carmen Junior Nascimento "
           " Alan Sanches Euclides Fernandes Ivana Bastos Jurailton Santos Matheus Ferreira Vitor Bonfim"
           " Felipe Duarte Paulo Rangel Robinson Almeida Tiago Correia CCJ Luis Cabral ccj');",
@@ -591,7 +591,20 @@ class BdPlunge {
           "'Saude e Saneamento Permanente Terca-feira Terca Alex da Piata Jose de Arimateia "
           " Eduardo Alencar Fabiola Mansur Hassan Jordavio Ramos Luciano Araujo Ludmilla Fiscina "
           " Alan Sanches Eures Ribeiro Junior Muniz Vitor Bonfim Eliel Martins css');",
+      //FIM DAS PERMANENTES INICIO DAS TEMPORARIAS
+      "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
+          "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
+          "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
+          "'Com. Especial de Desporto, Paradesporto e Lazer', "
+          "'Temporária', '3115-7260', 'sgc@alba.ba.gov.br', 'Sala a definir', "
+          "'Quarta-feira', '9h', 'Bobô', 'Dr. Diego Castro', "
+          "'Antonio Henrique Jr./Fabrício Falcão/Fátima Nunes/Matheus Ferreira/Pancadinha/Roberto Carlos', "
+          "'Alan Sanches/Neusa Cadore/Robinson Almeida/Tiago Correia', 'Raiana de Oliveira Pacheco', "
+          "'Especial de Desporto, Paradesporto e Lazer Temporaria Quarta-feira quarta 9h Bobo Dr. Diego Castro "
+          " Antonio Henrique Jr Fabricio Falcao Fatima Nunes Matheus Ferreira Pancadinha Roberto Carlos "
+          " Alan Sanches Neusa Cadore Robinson Almeida Tiago Correia');",
       /*
+      //COMISSÃO DE ÉTICA E DECORO PARLAMENTAR
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
@@ -2111,8 +2124,8 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Constituição e Justiça', 'Permanente', '3115-7260', 'ccj@alba.ba.gov.br', "
           "'Sala Luís Cabral', 'Terça-feira', '10h15', 'Maria del Carmen', 'Junior Nascimento', "
-          "'Alan Sanches/Euclides Fernandes/Ivana Bastos/Jurailton Santos/Matheus Ferreira/Vitor Bonfim', "
-          "'Felipe Duarte/Paulo Rangel/Robinson Almeida/Tiago Correia', 'Valeria Simões / Raiana Pacheco', "
+          "'Alan Sanches/Euclides Fernandes/Felipe Duarte/Ivana Bastos/Matheus Ferreira/Vitor Bonfim', "
+          "'Jurailton Santos/Paulo Rangel/Robinson Almeida/Tiago Correia', 'Valeria Simões / Raiana Pacheco', "
           "'Constituicao e Justica Permanente Terca-feira Terca Maria del Carmen Junior Nascimento "
           " Alan Sanches Euclides Fernandes Ivana Bastos Jurailton Santos Matheus Ferreira Vitor Bonfim"
           " Felipe Duarte Paulo Rangel Robinson Almeida Tiago Correia CCJ Luis Cabral ccj');",
@@ -2207,7 +2220,20 @@ class BdPlunge {
           "'Saude e Saneamento Permanente Terca-feira Terca Alex da Piata Jose de Arimateia "
           " Eduardo Alencar Fabiola Mansur Hassan Jordavio Ramos Luciano Araujo Ludmilla Fiscina "
           " Alan Sanches Eures Ribeiro Junior Muniz Vitor Bonfim Eliel Martins css');",
+      //FIM DAS PERMANENTES INICIO DAS TEMPORARIAS
+      "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
+          "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
+          "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
+          "'Com. Especial de Desporto, Paradesporto e Lazer', "
+          "'Temporária', '3115-7260', 'sgc@alba.ba.gov.br', 'Sala a definir', "
+          "'Quarta-feira', '9h', 'Bobô', 'Dr. Diego Castro', "
+          "'Antonio Henrique Jr./Fabrício Falcão/Fátima Nunes/Matheus Ferreira/Pancadinha/Roberto Carlos', "
+          "'Alan Sanches/Neusa Cadore/Robinson Almeida/Tiago Correia', 'Raiana de Oliveira Pacheco', "
+          "'Especial de Desporto, Paradesporto e Lazer Temporaria Quarta-feira quarta 9h Bobo Dr. Diego Castro "
+          " Antonio Henrique Jr Fabricio Falcao Fatima Nunes Matheus Ferreira Pancadinha Roberto Carlos "
+          " Alan Sanches Neusa Cadore Robinson Almeida Tiago Correia');",
       /*
+      // COMISSÃO DE ÉTICA E DECORO PARLAMENTAR
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("

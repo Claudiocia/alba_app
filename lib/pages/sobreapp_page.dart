@@ -42,6 +42,7 @@ class _PlaceSobreAppWidgetState extends State<PlaceSobreAppWidget> {
     print("O link do APP para a Loja é: "+vs.appStoreLink);
     print("A versão atual da loja é: "+vs.storeVersion);
     print("O que temos de novidade: "+vs.releaseNotes);
+    return versionAtual;
   }
 
   @override
@@ -51,7 +52,7 @@ class _PlaceSobreAppWidgetState extends State<PlaceSobreAppWidget> {
     isLoading = true;
     verifyVersion().then((ver){
       setState((){
-        ver = versionAtual;
+        versionAtual = 'Versão - '+ver;
       });
     });
     helperMesa.getAllMesa().then((list){
@@ -116,7 +117,7 @@ class _PlaceSobreAppWidgetState extends State<PlaceSobreAppWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Sobre o APP - "+versionAtual,
+                  Text( versionAtual,
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],

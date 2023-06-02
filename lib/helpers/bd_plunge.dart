@@ -111,8 +111,8 @@ class BdPlunge {
     if (dbAlb != null) {
       _version = await dbAlb.getVersion();
       print("Verificou a versão do banco é: $_version");
-      if(_version < 22){
-        dbAlb = await updateDb(dbAlb, _version, 22);
+      if(_version < 23){
+        dbAlb = await updateDb(dbAlb, _version, 23);
         print("disparou update");
         return dbAlb;
       }else{
@@ -129,7 +129,7 @@ class BdPlunge {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, "albanoti_tst.db");
     List<String> listQueries = formQueries();
-    return await openDatabase(path, version: 21,
+    return await openDatabase(path, version: 22,
         onCreate: (Database db, int newerVersion) async {
           for (String query in listQueries) {
             await db.execute(query);
@@ -505,10 +505,10 @@ class BdPlunge {
           "$comissViceCol, $comissMembCol, $comissSupleCol, $comissAsseCol, $comissPesqCol) VALUES ("
           "'Com. de Defesa do Consumidor e Relações de Trabalho', 'Permanente', '3115-7289', 'cdc@alba.ba.gov.br', "
           "'Sala Jairo Azi', 'Quarta-feira', '10h', 'Júnior Muniz', 'Laerte do Vando', "
-          "'Euclides Fernandes/Fabricio Falcão/Luciano Simões Filho/Niltinho/Pedro Tavares/Tiago Correia', "
+          "'Dr. Diego Castro/Euclides Fernandes/Fabricio Falcão/Luciano Simões Filho/Niltinho/Pedro Tavares/Tiago Correia', "
           "'Eduardo Alencar/Fátima Nunes/Kátia Oliveira/Roberto Carlos', 'Tania Marize', "
           "'Defesa do Consumidor e Relacoes de Trabalho Permanente Quarta-feira Quarta Junior Muniz Laerte do Vando "
-          " Euclides Fernandes Fabricio Falcao Luciano Simoes Filho Niltinho Pedro Tavares Tiago Correia "
+          " Dr Diego Castro Euclides Fernandes Fabricio Falcao Luciano Simoes Filho Niltinho Pedro Tavares Tiago Correia "
           " Eduardo Alencar Fatima Nunes Katia Oliveira Roberto Carlos Jairo Azi cdc');",
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
@@ -587,10 +587,10 @@ class BdPlunge {
           "'Com. de Saúde e Saneamento', 'Permanente', '3115-7235/3115-2909', 'css@alba.ba.gov.br', 'Sala Eliel Martins', "
           "'Terça-feira', '10h', 'Alex da Piatã', 'José de Arimateia', "
           "'Eduardo Alencar/Fabíola Mansur/Hassan/Jordavio Ramos/Luciano Araujo/Ludmilla Fiscina', "
-          "'Alan Sanches/Eures Ribeiro/Júnior Muniz/Vitor Bonfim', 'Nancy Lima Pinto da Silva', "
+          "'Alan Sanches/Júnior Muniz/Ricardo Rodrigues/Vitor Bonfim', 'Nancy Lima Pinto da Silva', "
           "'Saude e Saneamento Permanente Terca-feira Terca Alex da Piata Jose de Arimateia "
           " Eduardo Alencar Fabiola Mansur Hassan Jordavio Ramos Luciano Araujo Ludmilla Fiscina "
-          " Alan Sanches Eures Ribeiro Junior Muniz Vitor Bonfim Eliel Martins css');",
+          " Alan Sanches Ricardo Rodrigues Junior Muniz Vitor Bonfim Eliel Martins css');",
       //FIM DAS PERMANENTES INICIO DAS TEMPORARIAS
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
@@ -2135,9 +2135,9 @@ class BdPlunge {
           "'Com. de Defesa do Consumidor e Relações de Trabalho', 'Permanente', '3115-7289', 'cdc@alba.ba.gov.br', "
           "'Sala Jairo Azi', 'Quarta-feira', '10h', 'Júnior Muniz', 'Laerte do Vando', "
           "'Euclides Fernandes/Fabricio Falcão/Luciano Simões Filho/Niltinho/Pedro Tavares/Tiago Correia', "
-          "'Eduardo Alencar/Fátima Nunes/Kátia Oliveira/Roberto Carlos', 'Tania Marize', "
+          "'Dr. Diego Castro/Eduardo Alencar/Fátima Nunes/Kátia Oliveira/Roberto Carlos', 'Tania Marize', "
           "'Defesa do Consumidor e Relacoes de Trabalho Permanente Quarta-feira Quarta Junior Muniz Laerte do Vando "
-          " Euclides Fernandes Fabricio Falcao Luciano Simoes Filho Niltinho Pedro Tavares Tiago Correia "
+          " Dr Diego Castro Euclides Fernandes Fabricio Falcao Luciano Simoes Filho Niltinho Pedro Tavares Tiago Correia "
           " Eduardo Alencar Fatima Nunes Katia Oliveira Roberto Carlos Jairo Azi cdc');",
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
@@ -2216,10 +2216,10 @@ class BdPlunge {
           "'Com. de Saúde e Saneamento', 'Permanente', '3115-7235/3115-2909', 'css@alba.ba.gov.br', 'Sala Eliel Martins', "
           "'Terça-feira', '10h', 'Alex da Piatã', 'José de Arimateia', "
           "'Eduardo Alencar/Fabíola Mansur/Hassan/Jordavio Ramos/Luciano Araujo/Ludmilla Fiscina', "
-          "'Alan Sanches/Eures Ribeiro/Júnior Muniz/Vitor Bonfim', 'Nancy Lima Pinto da Silva', "
+          "'Alan Sanches/Júnior Muniz/Ricardo Rodrigues/Vitor Bonfim', 'Nancy Lima Pinto da Silva', "
           "'Saude e Saneamento Permanente Terca-feira Terca Alex da Piata Jose de Arimateia "
           " Eduardo Alencar Fabiola Mansur Hassan Jordavio Ramos Luciano Araujo Ludmilla Fiscina "
-          " Alan Sanches Eures Ribeiro Junior Muniz Vitor Bonfim Eliel Martins css');",
+          " Alan Sanches Ricardo Rodrigues Junior Muniz Vitor Bonfim Eliel Martins css');",
       //FIM DAS PERMANENTES INICIO DAS TEMPORARIAS
       "INSERT INTO $tabComiss ($comissNomeCol, $comissTipoCol, "
           "$comissTelCol, $comissLocCol, $comissDiaCol, $comissHoraCol, $comissEmailCol, $comissPresCol,	"
